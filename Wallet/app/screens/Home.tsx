@@ -1,7 +1,7 @@
-import { View, Text, Button } from "react-native";
+import { Button, Text, TouchableOpacity, Image, View, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import { NavigationProp } from "@react-navigation/native";
-import { FIREBASE_AUTH } from '../../FirebaseConfig';
+import { FIREBASE_AUTH } from "../../FirebaseConfig";
 
 interface RouterProps {
     navigation : NavigationProp<any, any>;
@@ -9,14 +9,30 @@ interface RouterProps {
 
 const Home = ({navigation}: RouterProps) => {
     return (
-        <View>
-            <Text>Hi!</Text>
-            <Button onPress={() => FIREBASE_AUTH.signOut()} title="Cerrar sesion"/>
-            <Button onPress={() => navigation.navigate('Cards')} title="Mis Tarjetas"/>
-            <Button onPress={() => navigation.navigate('Profile')} title="Mi Perfil"/>
-        </View>
-
-    )
+        <SafeAreaView>
+            <View>
+                <Text>Expensify</Text>
+                <TouchableOpacity>
+                    <Button onPress={() => FIREBASE_AUTH.signOut()} title="Cerrar sesion"/>
+                </TouchableOpacity>
+            </View>
+            <View>
+                <Image source={require('../assets/icon.png')} />
+            </View>
+        </SafeAreaView>
+        
+    );
 }
 
 export default Home
+
+const styles = StyleSheet.create({
+    container: {
+      paddingTop: 50,
+    },
+    stretch: {
+      width: 50,
+      height: 200,
+      resizeMode: 'stretch',
+    },
+  });
